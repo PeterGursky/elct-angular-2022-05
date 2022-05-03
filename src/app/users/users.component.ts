@@ -14,13 +14,20 @@ export class UsersComponent implements OnInit {
                    new User('Fero','fero@fero.sk',undefined, undefined, undefined),
                    {name: 'Hanka', email: 'hanka@hanka.sk', password: ''}]; 
   selectedUser: User | undefined;
+  errorMessage = '';
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
 //    this.users = this.usersService.getLocalUsers();
-      this.usersService.getLocalUsers2().subscribe(
-        (u:User[]) => this.users = u);
+    // this.usersService.getUsers().subscribe(
+    //   (u:User[]) => this.users = u,
+    //   _error => this.errorMessage = "Error in communication with server");
+    this.usersService.getUsers().subscribe({
+      next: (u:User[]) => this.users = u,
+      error: _error => this.errorMessage = "Error in communication with server",
+      complete: () => ''
+    });
   }
 
   selectUser(user: User) {
