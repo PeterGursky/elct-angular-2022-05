@@ -8,13 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { P404Component } from './p404/p404.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
     LoginComponent,
-    P404Component
+    P404Component,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
