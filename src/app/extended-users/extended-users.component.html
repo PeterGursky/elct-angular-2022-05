@@ -1,0 +1,47 @@
+<table class="table table-hover">
+  <thead>
+      <tr><th>id</th><th>name</th><th>e-mail</th>
+          <th>last login</th><th>active</th><th>groups</th><th>permissions</th><th></th></tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.lastLogin | date: 'd.M.yyyy hh:mm:ss'}}</td>
+        <td *ngIf="user.active; else elseBlock">
+          <i class="bi bi-check-circle-fill text-success"></i>
+        </td>
+        <ng-template #elseBlock>
+          <td>
+            <i class="bi bi-x-circle-fill text-danger"></i>
+          </td>
+        </ng-template>
+        <td>
+          {{user.groups | groups}}
+        </td>
+        <td>
+          {{user.groups | groups: 'permissions'}}
+        </td>
+        <td [noWrap]="true">
+          <button type="button" class="btn btn-light" data-bs-toggle="modal" 
+          data-bs-target="#exampleModal" (click)="startEdit(user)">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button type="button" class="btn btn-danger" (click)="deleteUser(user)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+  </tbody>
+</table>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" 
+    data-bs-target="#exampleModal" (click)="startAdd()">
+  Add new user
+</button>
+
+<app-user-edit [user]="userToEdit"
+               [actionWithUser]="actionWithUser" 
+               (userSubmit)="saveUser($event)"></app-user-edit>

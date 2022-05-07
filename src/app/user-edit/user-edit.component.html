@@ -1,0 +1,55 @@
+<form (ngSubmit)="onSubmit()" #formModel="ngForm" *ngIf="user">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" 
+                [(ngModel)]="user.name" name="name" required #nameNgModel="ngModel"> 
+          <div [hidden]="nameNgModel.valid || nameNgModel.pristine" class="alert alert-danger">
+            Name is required
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" id="email" #emailNgModel="ngModel"
+            [(ngModel)]="user.email" name="email" email required>
+          <div [hidden]="emailNgModel.valid || emailNgModel.pristine" class="alert alert-danger">
+            Email must be valid
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" [(ngModel)]="user.password" name="password">
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="active" [(ngModel)]="user.active" name="active">
+          <label class="form-check-label" for="active">
+            active user
+          </label>
+        </div>
+        <div>user groups:</div>
+        <div class="form-check" *ngFor="let pair of groups; let i = index">
+          <input class="form-check-input" type="checkbox" id="group{{i}}" [(ngModel)]="pair.isMember" name="group{{i}}">
+          <label class="form-check-label" for="group{{i}}">
+            {{pair.group.name}}
+          </label>
+        </div>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" 
+              [disabled]="formModel.form.invalid">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>

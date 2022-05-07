@@ -9,6 +9,10 @@ import { LoginComponent } from './login/login.component';
 import { P404Component } from './p404/p404.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { ExtendedUsersComponent } from './extended-users/extended-users.component';
+import { MessageComponent } from './message/message.component';
+import { GroupsPipe } from '../pipes/groups.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { NavbarComponent } from './navbar/navbar.component';
     UsersComponent,
     LoginComponent,
     P404Component,
-    NavbarComponent
+    NavbarComponent,
+    ExtendedUsersComponent,
+    UserEditComponent,
+    MessageComponent,
+    GroupsPipe
   ],
   imports: [
     BrowserModule,

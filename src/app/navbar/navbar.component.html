@@ -9,9 +9,21 @@
           <a class="nav-link active" href="/users">Users</a>
           <a class="nav-link" href="/extended-users">Extended users</a>
         </div>
-        <div class="navbar-nav mr-auto">
-          <a class="nav-link" href="/login">Login</a>
-        </div>
+        <ng-template [ngIf]="userName" [ngIfElse]="notLogged">
+          <span class="navbar-text">
+            ({{userName}})
+          </span>
+          <ul class="navbar-nav mr-auto">
+            <li><a class="nav-link logout" (click)="logout()">Logout</a></li>
+          </ul>
+        </ng-template>
+        <ng-template #notLogged>
+          <ul class="navbar-nav mr-auto">
+            <li>
+              <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+            </li>
+          </ul>
+        </ng-template>
       </div>
     </div>
   </nav>

@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
   title:string = 'Users table';
   users: User[] = [new User("Jano","jano@jano.sk", 1, new Date(),'qwerty'),
                    new User('Fero','fero@fero.sk',undefined, undefined, undefined),
-                   {name: 'Hanka', email: 'hanka@hanka.sk', password: ''}]; 
+                  ]; 
   selectedUser: User | undefined;
   errorMessage = '';
 
